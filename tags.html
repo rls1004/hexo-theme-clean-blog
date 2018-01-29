@@ -3,6 +3,27 @@ layout: page
 title: 'Tag Index'
 ---
 
+<style>
+tag-post{
+    padding-left:0
+}
+ul:not(.browser-default).post-list a{
+    text-decoration:none;
+    /*color:#00695c*/
+}
+ul:not(.browser-default).post-list li{
+    list-style-position:inside;
+    padding-left:40px;
+    -webkit-transition:all .2s ease-in-out;
+    -moz-transition:all .2s ease-in-out;-ms-transition:all .2s ease-in-out;
+    -o-transition:all .2s ease-in-out;
+    transition:all .2s ease-in-out
+}
+ul:not(.browser-default).post-list li:hover{
+    list-style-type:circle;padding-left:20px
+}
+</style>
+
 {%- capture site_tags -%}
     {%- for tag in site.tags -%}
         {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%}
@@ -20,15 +41,15 @@ title: 'Tag Index'
         <i class="fa fa-tag" aria-hidden="true"></i>
         &nbsp;{{- tag -}}&nbsp;({{site.tags[tag].size}})
     </h2>
-    <div class="post-list">
+    <ul class="post-list">
         {%- for post in site.tags[tag] -%}
-            <div class="tag-entry">
+            <li class="tag-entry">
                 <a href="{{- site.url -}}{{- post.url -}}">{{- post.title -}}</a>
-                <div class="entry-date">
+                <div class="entry-date" style="padding-left: 25px;">
                     <time datetime="{{- post.date | date_to_xmlschema -}}">{{- post.date | date: "%B %d, %Y" -}}</time>
                 </div>
-            </div>
+            </li>
         {%- endfor -%}
-    </div>
+    </ul>
 {%- endfor -%}
 </div>
