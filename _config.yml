@@ -23,7 +23,7 @@ description: system hacker
 
 # List of links in the navigation bar
 navbar-links:
-  Home: ""
+  Home: "index.html"
   About Me: "aboutme"
   Resources:
 
