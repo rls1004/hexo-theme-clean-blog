@@ -5,7 +5,7 @@ image: /img/hello_world.jpeg
 ---
 
 ## 요약
-`GOT Overwrite`
+`GOT Overwrite` `pwnable`
 
 ## 프로그램 분석
 4개의 명령어를 사용할 수 있다.
