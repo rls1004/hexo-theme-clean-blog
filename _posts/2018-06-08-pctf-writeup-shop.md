@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Plaid CTF write-up : shop
+title: [Plaid CTF] shop
 image: /img/hello_world.jpeg
 ---
 
