@@ -16,15 +16,6 @@ image: /img/hello_world.jpeg
 [c] check out and buy (0x400B78)
 [n] shop name (0x400D6A)
 ```
-명령어 목록:
-
-| cmd | desc | addr |
-| :------ |:--- | :--- |
-| a | allocate item | 0x400A5B |
-| l | list item | 0x400D0E |
-| c | check out and buy | 0x400B78 |
-| n | shop name | 0x400D6A |
-
 <br>
 
 #### [a] allocate item (0x400A5B)
