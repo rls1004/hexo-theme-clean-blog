@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Plaid CTF shop
+title:  "Welcome to Jekyll!"
 image: /img/hello_world.jpeg
 ---
 
