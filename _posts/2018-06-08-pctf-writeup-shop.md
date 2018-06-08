@@ -4,11 +4,12 @@ title: "[Plaid CTF] shop"
 image: /img/hello_world.jpeg
 ---
 
-##요약
+## 요약
 `GOT Overwrite`
 
-##프로그램 분석
+## 프로그램 분석
 4개의 메뉴를 사용할 수 있다.
+
 메뉴 목록이 출력되지 않으므로 IDA 상에서 분석해야 한다.
 
 ```
