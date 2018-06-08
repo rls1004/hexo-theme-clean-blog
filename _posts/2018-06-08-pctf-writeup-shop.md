@@ -7,6 +7,7 @@ image: /img/hello_world.jpeg
 ## 요약
 `GOT Overwrite` `pwnable`
 
+---
 ## 프로그램 분석
 4개의 명령어를 사용할 수 있다.
 
@@ -19,7 +20,7 @@ image: /img/hello_world.jpeg
 <br>
 
 #### [a] allocate item (0x400A5B)
-item 구조:
+##### item 구조:
 
 | offset | desc |
 | :------ |:--- |
