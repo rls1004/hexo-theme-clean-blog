@@ -12,14 +12,14 @@ common-js:
   - "/js/jquery-1.11.2.min.js"
   - "/js/bootstrap.min.js"
   - "/js/main.js"
-  - "/js/mermaid.min.js"
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
   {% include head.html %}
-
+<script src="/js/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
   <body>
 
     {% include gtm_body.html %}
