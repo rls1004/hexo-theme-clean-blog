@@ -31,3 +31,9 @@ item 구조:
 
 이 중에서 name, description, price 를 입력할 수 있다.
 head 는 이전에 할당된 item 의 주소를 가리키고, 그 뒤에 `urandom` 으로부터 가져온 난수 4바이트를 저장한다.
+
+#### [l] list item (0x400D0E)
+head (0x6021F0) 에 저장된 주소를 시작으로, 각 item 의 head 를 따라가며 목록을 출력한다.
+- item+12 : %s (name)
+- item+300 : %.2f (price)
+- item+44 : %s (description)
