@@ -25,13 +25,19 @@ image: /img/hello_world.jpeg
 | c | check out and buy | 0x400B78 |
 | n | shop name | 0x400D6A |
 
+<br>
 
 #### [a] allocate item (0x400A5B)
 - **item 구조**
 
-item size : 0x130
-item+0 ~ +7 : &head (\*0x6021F0)
-item+8 ~ +11 : random bytes (0-9,a-f)
-item+12 ~ +43 : name
-item+44 ~ +299 : description
-item+300 ~ +304 : price
+0x130(304) 크기의 메모리에 item 의 정보가 담긴다:
+
+| offset | desc |
+| :------ |:--- |
+| 0~7 | &head (\*0x6021F0) |
+| 8~11 | random bytes(0-9,a-f) |
+| 12~43 | name |
+| 44~299 | description |
+| 300~304 | price |
+
+이 중에서 name, description, price 를 입력할 수 있다.
