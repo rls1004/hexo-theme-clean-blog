@@ -33,7 +33,7 @@ image: /img/hello_world.jpeg
 head 는 이전에 할당된 item 의 주소를 가리키고, 그 뒤 4바이트는 `0-9` `a-f` 로 구성된 난수를 저장한다.
 
 #### [l] list item (0x400D0E)
-<div clas="mermaid">
+<div class="mermaid">
 graph LR
 A(item2) --> |head| B(item1)
 B --> |head| C(item0)
