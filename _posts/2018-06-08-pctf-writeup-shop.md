@@ -28,9 +28,7 @@ image: /img/hello_world.jpeg
 <br>
 
 #### [a] allocate item (0x400A5B)
-- **item 구조**
-
-0x130(304) 크기의 메모리에 item 의 정보가 담긴다:
+item 구조:
 
 | offset | desc |
 | :------ |:--- |
@@ -41,3 +39,4 @@ image: /img/hello_world.jpeg
 | 300~304 | price |
 
 이 중에서 name, description, price 를 입력할 수 있다.
+head 는 이전에 할당된 item 의 주소를 가리키고, 그 뒤에 `urandom` 으로부터 가져온 난수 4바이트를 저장한다.
