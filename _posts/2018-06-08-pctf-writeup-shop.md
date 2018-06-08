@@ -33,11 +33,11 @@ image: /img/hello_world.jpeg
 head 는 이전에 할당된 item 의 주소를 가리키고, 그 뒤 4바이트는 `0-9` `a-f` 로 구성된 난수를 저장한다.
 
 #### [l] list item (0x400D0E)
-```mermaid
+<div clas="mermaid">
 graph LR
 A(item2) --> |head| B(item1)
 B --> |head| C(item0)
-```
+</div>
 head (0x6021F0) 에 저장된 주소를 시작으로, 각 item 의 head 를 따라가며 목록을 출력한다. 출력 방식은 다음과 같다.
 - item+12 : %s (name)
 - item+300 : %.2f (price)
