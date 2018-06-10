@@ -21,19 +21,19 @@ $(document).ready(function(){
 });
 </script>
 <center>
-<font style="font-size: 27px; line-height: 1.1; display: block; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 300; margin: 10px 0 0;">I am a <span id="js-rotating">Very Tenacious, So Brave, Very Calm, Much Determined, Such Cool</span> Hacker</font>
+<font style="font-size: 27px; line-height: 1.1; display: block; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 300; margin: 10px 0 0;">I am a <span id="js-rotating">이것은, 멋있는, 효과, 굿굿굿</span> Hacker</font>
 </center>
 {:/}
 
 
 Contact information:
 
-- Email: 
-- Facebook: 
-- Github: 
+- Email: 98nba@naver.com
+- Facebook: facebook.com/rls1004
+- Github: github.com/rls1004
 
 What else do you need?
 
 ### my history
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+asdf
