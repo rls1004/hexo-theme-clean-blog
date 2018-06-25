@@ -115,6 +115,7 @@ CTF{I_luv_buggy_sOFtware}
 다시 2번 메뉴 선택 후, "../main" 을 입력하면 실행 파일을 추출할 수 있다.
 
 <img src="/img/google_adminui2.JPG" class="effect">
+
 <img src="/img/google_adminui2_.JPG" class="effect">
 
 분석해보면 1번 메뉴 선택시 입력해야 하는 첫 번째 패스워드는 ADMIN UI 에서 읽었던 flag 값이고, 두 번째 패스워드는 길이가 35인 값 아무거나 통과된다.
@@ -131,16 +132,18 @@ CTF{Two_PasSworDz_Better_th4n_1_k?}
 두 개의 패스워드를 통과하면 몇 가지 커맨드를 실행시켜주는 루틴으로 들어간다.
 
 <img src="/img/google_adminui3_shell.JPG" class="effect">
+
 <img src="/img/google_adminui3_system.JPG" class="effect">
 
 quit, version, shell, echo, debug 명령어를 사용할 수 있는데, 이 중에서 shell 명령어를 입력했을 때 shell_enabled 가 1이면 debug_shell()을 호출하고, debug_shell() 에서는 system("/bin/sh") 를 호출한다.
 
 <img src="/img/google_adminui3.JPG" class="effect">
+
 <img src="/img/google_adminui3_.JPG" class="effect">
 
 명령어를 입력받을 때 길이 검사를 하지 않아 `BOF` 취약점이 발생하기 때문에 debug_shell() 함수의 주소를 스프레이해서 return address 를 덮으면 쉘을 획득할 수 있다.
 
-```bash
+```
 Unknown command ''BAA'
 > $ quit
 Bye!
