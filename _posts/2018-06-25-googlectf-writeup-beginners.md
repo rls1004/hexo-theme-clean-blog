@@ -35,7 +35,7 @@ VMY{vtxltkvbiaxkbltlnulmbmnmbhgvbiaxk} &rarr; CTF{caesarcipherisasubstitutioncip
 <br><br><br>
 
 ### SECURITY BY OBSCURITY (misc)
-첨부파일을 받아보면 zip 으로 압축되어 있다. unzip 으로 압축을 여러번 풀면 또 다른 방식으로 압축되어 있다. zip, unzip, 7z, bzip2, gunzip 순서로 압축을 해제하면 마지막으로 패스워드가 걸린 zip 파일이 된다.
+첨부파일을 받아보면 zip 으로 압축되어 있다. unzip 으로 압축을 여러번 풀면 또 다른 방식으로 압축되어 있다. `zip`, `unzip`, `7z`, `bzip2`, `gunzip` 순서로 압축을 해제하면 마지막으로 패스워드가 걸린 zip 파일이 된다.
 
 advanced ZIP password Recovery 등의 프로그램을 이용하면 패스워드를 알아낼 수 있다. 알아낸 패스워드는 "asdf" 이다.
 
