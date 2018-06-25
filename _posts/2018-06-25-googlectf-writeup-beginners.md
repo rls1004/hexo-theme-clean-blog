@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Google CTF 2018] Beginners Quest Write-up"
-image: /img/hello_world.jpeg
+image: /img/google_ctf_2018.JPG
 tags: [CTF, write-up, pwnable, misc]
 ---
 
