@@ -77,6 +77,8 @@ CTF{SOmething-CATastr0phic}
 ```
 1번 메뉴를 선택하면 패스워드를 입력해야 한다.
 
+2번 메뉴를 선택하면 patchnotes 를 읽을 수 있는데 예를 들어서 "Version0.3" 을 입력하면 "Version0.3" 파일을 읽어서 출력해준다.
+이를 이용해서 `"../../../etc/passwd"` 를 입력하면 사용자 정보를 확인할 수 있다.
 ```
 The following patchnotes were found:
  - Version0.3
@@ -86,10 +88,8 @@ Which patchnotes should be shown?
 (생략)
 user:x:1337:1337::/home/user:
 ```
-2번 메뉴를 선택하면 patchnotes 를 읽을 수 있는데 예를 들어서 "Version0.3" 을 입력하면 "Version0.3" 파일을 읽어서 출력해준다.
-이를 이용해서 `"../../../etc/passwd"` 를 입력하면 사용자 정보를 확인할 수 있다.
 
-
+user 라는 사용자명을 확인했으면 user의 홈 디렉토리에서 플래그를 읽는다.
 ```
 === Management Interface ===
  1) Service access
@@ -103,7 +103,6 @@ Which patchnotes should be shown?
 ../../../home/user/flag
 CTF{I_luv_buggy_sOFtware}
 ```
-user 라는 사용자명을 확인했으면 user의 홈 디렉토리에서 플래그를 읽는다.
 
 CTF{I_luv_buggy_sOFtware}
 <br><br><br>
