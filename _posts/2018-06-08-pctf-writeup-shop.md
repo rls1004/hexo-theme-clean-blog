@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Plaid CTF] shop"
+title: "[Plaid CTF 2018] shop Write-up"
 image: /img/hello_world.jpeg
 ---
 
