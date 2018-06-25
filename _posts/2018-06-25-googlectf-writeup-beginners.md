@@ -138,7 +138,7 @@ quit, version, shell, echo, debug 명령어를 사용할 수 있는데, 이 중�
 <img src="/img/google_adminui3.JPG" class="effect">
 <img src="/img/google_adminui3_.JPG" class="effect">
 
-명령어를 입력받을 때 길이 검사를 하지 않아 BOF 취약점이 발생하기 때문에 debug_shell() 함수의 주소를 스프레이해서 return address 를 덮으면 쉘을 획득할 수 있다.
+명령어를 입력받을 때 길이 검사를 하지 않아 `BOF` 취약점이 발생하기 때문에 debug_shell() 함수의 주소를 스프레이해서 return address 를 덮으면 쉘을 획득할 수 있다.
 
 ```bash
 Unknown command ''BAA'
