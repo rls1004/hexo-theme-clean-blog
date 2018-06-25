@@ -2,6 +2,7 @@
 layout: post
 title: "[Google CTF 2018] Beginners Quest Write-up"
 image: /img/hello_world.jpeg
+tags: [CTF, write-up, pwnable, misc]
 ---
 
 ## 요약
@@ -9,6 +10,8 @@ image: /img/hello_world.jpeg
 
 ---
 #### LETTER
+<kbd>
 ![letter](/img/google_letter.JPG)
+</kbd>
 
 s
