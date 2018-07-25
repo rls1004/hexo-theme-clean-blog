@@ -127,8 +127,9 @@ def dump(adr,frmt='p'):
                         print "[!] execption"
                         break
 ```
-<img src="/img/ctfzone_easypwn_1.PNG" class="effect">
-<br><br><br>
+<br>
+
+<center><img src="/img/ctfzone_easypwn_1.PNG" class="effect"></center>
 
 덤프 뜬 바이너리를 IDA로 열어보면 `1, 2, 3` 메뉴 외에 `X, T, S` 라는 메뉴가 있는 것을 확인 할 수 있다. 하나씩 사용해보면 되는데 그 중에서도 `T` 메뉴를 사용하면 바이너리와 라이브러리를 다운 받을 수 있는 링크를 알려준다.. 개꿀
 ```
