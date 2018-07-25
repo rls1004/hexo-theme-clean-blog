@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[CTFZone 2018] easypwn_strings Write-up"
-image: /img/ctfzone_2018.JPG
+image: /img/ctfzone_2018.png
 tags: [CTF, write-up, pwnable]
 ---
 
