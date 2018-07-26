@@ -5,13 +5,6 @@ image: /img/google_ctf_2018.JPG
 tags: [CTF, write-up, pwnable, misc]
 ---
 
-<style>
-.effect {
-      display: inline-block;
-      box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
-}
-</style>
-
 ## 요약
 `misc` `pwnable`
 

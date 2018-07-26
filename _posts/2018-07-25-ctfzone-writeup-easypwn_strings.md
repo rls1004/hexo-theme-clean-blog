@@ -5,13 +5,6 @@ image: /img/ctfzone_2018.png
 tags: [CTF, write-up, pwnable]
 ---
 
-<style>
-.effect {
-      display: inline-block;
-      box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
-}
-</style>
-
 ## 요약
 `pwnable` `FSB`
 

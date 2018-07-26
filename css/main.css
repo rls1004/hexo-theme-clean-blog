@@ -12,6 +12,11 @@ layout: null
   src: url("font/D2Coding-Ver1.3.2-20180524.ttf")
 }
 
+.effect {
+      display: inline-block;
+      box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.8);
+}
+
 body {
   font-family: 'Noto Sans', sans-serif;
   font-size: 18px;
