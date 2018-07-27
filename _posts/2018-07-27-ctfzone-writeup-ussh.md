@@ -175,7 +175,7 @@ aaaa@crypto: $
 ```
 regular 가 바뀌게 되는 위치를 찾지 못한다. 전부 다 `Invalid session` 아니면 `PKCS7 padding is incorrect` 에러가 발생한다. 여기서 다시 생각을 좀 해야한다.
 
-<center><img src="/img/ctfzone_ussh_3.png" class="effect"></center>
+<center><img src="/img/ctfzone_ussh_33.png" class="effect"></center>
 
 첫 번째 평문 블록이 가지고 있을 데이터를 생각해보면 위 그림처럼 표현할 수 있다.<br>
 CBC 모드에 의하면 첫 번째 암호 블록을 복호화하고 IV 와 XOR 한 값이 첫 번째 평문 블록이 되는데, IV 의 열 번째 바이트부터 id 값에 영향을 줬으니 첫 번째 평문 블록의 열 번째 바이트부터 7 bytes 는 실제 id 값에 해당하는 데이터를 가지고 있다.<br>
