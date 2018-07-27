@@ -50,7 +50,8 @@ id 명령로 현재의 권한을 확인해보면 regular 로 설정되어 있는
 asdfasdf@crypto: $ session --set LRbbKN4KlLihxu2D3f12fg==:iK5+5EnwtDlMveNF1RIKWBxoR+mwLrAm+qesFm3gDta=
 Error: PKCS7 padding is incorrect
 ```
-\-\-set 옵션을 이용해서 원래 세션의 오른쪽 값 중 마지막 바이트를 임의로 바꿔줬더니 놀랍게도 `PKCS7 padding is incorrect` 에러가 발생한다. 그 외에도 왼쪽의 16 바이트를 변경하며 시도해보면 `IV must be 16 bytes long`, 오른쪽의 32 바이트를 변경하며 시도해보면 `Input strings must be a multiple of 16 in length` 라는 흥미로운 에러들이 발생한다.<br><br>
+\-\-set 옵션을 이용해서 원래 세션의 오른쪽 값 중 마지막 바이트를 임의로 바꿔줬더니 놀랍게도 `PKCS7 padding is incorrect` 에러가 발생한다.<br>
+그 외에도 왼쪽의 16 바이트를 변경하며 시도해보면 `IV must be 16 bytes long`, 오른쪽의 32 바이트를 변경하며 시도해보면 `Input strings must be a multiple of 16 in length` 라는 흥미로운 에러들이 발생한다.<br><br>
 
 PKCS7 에 대해서 검색해보니 **AES** 암호에서 사용하는 패딩 기법이었고, IV 가 등장하는 것으로 보아 **CBC** 모드를 사용했음을 알 수 있다.
 
