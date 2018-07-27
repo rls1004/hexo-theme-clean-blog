@@ -50,7 +50,8 @@ id 명령로 현재의 권한을 확인해보면 regular 로 설정되어 있는
 asdfasdf@crypto: $ session --set LRbbKN4KlLihxu2D3f12fg==:iK5+5EnwtDlMveNF1RIKWBxoR+mwLrAm+qesFm3gDta=
 Error: PKCS7 padding is incorrect
 ```
-\-\-set 옵션을 이용해서 원래 세션의 오른쪽 값 중 마지막 바이트를 임의로 바꿔줬더니 놀랍게도 `PKCS7 padding is incorrect` 에러가 발생한다. 그 외에도 왼쪽의 16 바이트를 변경하며 시도해보면 `IV must be 16 bytes long`, 오른쪽의 32 바이트를 변경하며 시도해보면 `Input strings must be a multiple of 16 in length` 라는 흥미로운 에러들이 발생한다.<br>
+\-\-set 옵션을 이용해서 원래 세션의 오른쪽 값 중 마지막 바이트를 임의로 바꿔줬더니 놀랍게도 `PKCS7 padding is incorrect` 에러가 발생한다. 그 외에도 왼쪽의 16 바이트를 변경하며 시도해보면 `IV must be 16 bytes long`, 오른쪽의 32 바이트를 변경하며 시도해보면 `Input strings must be a multiple of 16 in length` 라는 흥미로운 에러들이 발생한다.<br><br>
+
 PKCS7 에 대해서 검색해보니 AES 암호에서 사용하는 패딩 기법이었고, IV 가 등장하는 것으로 보아 CBC 모드를 사용했음을 알 수 있다.
 
 <center><img src="/img/ctfzone_ussh_1.png" class="effect"></center>
@@ -149,7 +150,7 @@ aaaa@crypto: $
 session: Invalid session
 ```
 안됨.. group 을 지정하는 부분이 없어지면 안되나 봄
-<br><br>
+<br><br><br><br>
 그냥 무작정 brute force 하면서 regular 위치 알아내기
 ```python
 for i in range(len(ct)):
@@ -174,7 +175,10 @@ regular 가 바뀌게 되는 위치를 찾지 못한다. 전부 다 `Invalid ses
 
 <center><img src="/img/ctfzone_ussh_3.png" class="effect"></center>
 
-첫 번째 평문 블록이 가지고 있을 데이터를 생각해보면 위 그림처럼 표현할 수 있다. CBC 모드에 의하면 첫 번째 암호 블록을 복호화하고 IV 와 XOR 한 값이 첫 번째 평문 블록이 되는데, IV 의 열 번째 바이트부터 id 값에 영향을 줬으니 첫 번째 평문 블록의 열 번째 바이트부터 7 bytes 는 실제 id 값에 해당하는 데이터를 가지고 있다. 하지만 id 값으로 4 bytes 길이인 'aaaa'를 입력했으므로 여기에는 id 값 이외에 group 에 대한 정보가 들어가게 될것이다. 또한 id와 group 정보를 구분하는 구분자(&)도 들어가게 된다.<br>
+첫 번째 평문 블록이 가지고 있을 데이터를 생각해보면 위 그림처럼 표현할 수 있다.
+CBC 모드에 의하면 첫 번째 암호 블록을 복호화하고 IV 와 XOR 한 값이 첫 번째 평문 블록이 되는데, IV 의 열 번째 바이트부터 id 값에 영향을 줬으니 첫 번째 평문 블록의 열 번째 바이트부터 7 bytes 는 실제 id 값에 해당하는 데이터를 가지고 있다.
+하지만 id 값으로 4 bytes 길이인 'aaaa'를 입력했으므로 여기에는 id 값 이외에 group 에 대한 정보가 들어가게 될것이다.
+또한 id와 group 정보를 구분하는 구분자(&)도 들어가게 된다.<br>
 첫 번째 암호 블록을 조작하면 두 번째 암호 블록이 복호화되었을 때 첫 번째 암호 블록과 XOR 되므로 평문을 조작할 수 있지만, 첫 번째 암호 블록의 복호화 결과는 알 수 없는 값으로 바뀌게 된다. 이 과정에서 id와 group 정보를 구분하는 <span style="color:#cf3030">구분자(&)</span> 또한 사라지게 되어 `Invalid session` 이라는 에러가 발생하는 것으로 보인다.<br>
 두 번째 암호 블록에는 나머지 데이터들과 <span style="color:#cf3030">패딩 값</span>이 들어간다. 암호화할 데이터의 길이가 16의 배수에 맞지 않다면 빈 공간을 패딩으로 채우는데, 2 byte 가 모자라다면 <span style="color:#cf3030">02 02</span> 이라는 패딩을, 4 bytes 가 모자라다면 <span style="color:#cf3030">04 04 04 04</span> 라는 패딩을 채운다. 따라서 이 암호 블록이 조작될 경우, 패딩이 어긋나게 되어 `PKCS7 padding is incorrect` 라는 에러가 발생하게 된다.<br>
 이러한 정보들을 조합했을 때, *구분자(&)와 패딩 값을 암호화 하고 있지 않은 블록이면서 다음 블록이 group 에 대한 정보를 가지고 있는 암호 블록* 을 조작해야 원하는 결과를 얻을 수 있다!
