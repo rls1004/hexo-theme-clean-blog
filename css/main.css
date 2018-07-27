@@ -683,6 +683,7 @@ pre {
 }
 pre code {
   white-space: pre;
+  font-family: "D2Coding";
 }
 /* aaaaaaaaaa */
 pre.highlight, .highlight > pre, td.code pre {
