@@ -125,7 +125,8 @@ aaaaa#aaaa@crypto: $
 [015] uid=3(regular) gid=3(regular) groups=3(regular)
 aaaaaa¿aaa@crypto: $
 ```
-놀랍게도 IV의 마지막 7 바이트가 id 의 첫 7 바이트에 영향을 준다. id 와 group 값을 구분하는 문자를 알아내기 위해 다시 한 번 brute force 를 시도했다.
+놀랍게도 IV의 마지막 7 바이트가 id 의 첫 7 바이트에 영향을 준다.<br>
+id 와 group 값을 구분하는 문자를 알아내기 위해 다시 한 번 brute force 를 시도했다.
 ```python
 for i in range(0x100):
 	n_iv = iv[:12]+chr(i^ord('a')^ord(iv[12]))+iv[13:]
