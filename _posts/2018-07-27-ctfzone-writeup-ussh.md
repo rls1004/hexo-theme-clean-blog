@@ -287,5 +287,5 @@ ctfzone{2e71b73d355eac0ce5a90b53bf4c03b2}
 <br>
 
 ### Ref
-https://ko.wikipedia.org/wiki/%EB%B8%94%EB%A1%9D_%EC%95%94%ED%98%B8_%EC%9A%B4%EC%9A%A9_%EB%B0%A9%EC%8B%9D
+https://ko.wikipedia.org/wiki/블록_암호_운용_방식
 https://en.wikipedia.org/wiki/Padding_(cryptography)
