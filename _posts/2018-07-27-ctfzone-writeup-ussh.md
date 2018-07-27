@@ -13,7 +13,7 @@ tags: [CTF, write-up, crypto]
 
 > nc crypto-01.v7frkwrfyhsjtbpfcppnu.ctfz.one 1337
 
-```
+```sh
 Login: asdfasdf
 Group: regular
 asdfasdf, welcome to crypto sh
