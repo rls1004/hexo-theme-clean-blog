@@ -6,11 +6,12 @@ layout: null
 @import url("pygment_highlights.css");
 
 /* --- General --- */
-
+/*
 @font-face {
   font-family: "D2Coding"
   src: url("font/D2Coding-Ver1.3.2-20180524.ttf")
 }
+*/
 
 .effect {
       display: inline-block;
@@ -690,8 +691,8 @@ pre.highlight, .highlight > pre, td.code pre {
   background-size: 3em 3em;
   background-position: 0px 10px;
   border-left: 7px solid #444;
-  font-family: "D2Coding"
 }
+/* font-family: "D2Coding" */
 
 code table, code table td, code table th, code table tbody, code table tr,
 td.gutter pre {
