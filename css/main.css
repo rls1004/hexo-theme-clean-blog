@@ -9,8 +9,8 @@ layout: null
 /* --- General --- */
 
 @font-face {
-  font-family: "D2Coding"
-  src: url("font/D2Coding-Ver1.3.2-20180524.ttf")
+  font-family: "D2Coding";
+  src: url("font/D2Coding-Ver1.3.2-20180524.ttf") format('truetype');
 }
 
 
@@ -683,7 +683,6 @@ pre {
 }
 pre code {
   white-space: pre;
-  font-family: "D2Coding";
 }
 /* aaaaaaaaaa */
 pre.highlight, .highlight > pre, td.code pre {
