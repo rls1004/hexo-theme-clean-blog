@@ -186,7 +186,8 @@ CBC 모드에 의하면 첫 번째 암호 블록을 복호화하고 IV 와 XOR �
 
 <center><img src="/img/ctfzone_ussh_4.png" class="effect"></center>
 
-대략 이런 구조를 만들어서 두 번째 암호 블록을 조작해야 한다. 위와 같은 구조를 만들기 위해서 id 값을 늘려줘야 하는데, 첫 번째 블록에 들어갈 7 bytes 와 두 번재 블록에 들어갈 16 bytes 를 더해서 최소 <span style="color:#cf3030">23 bytes</span> 길이의 id 값을 입력해야 한다 :P <br><br>
+대략 이런 구조를 만들어서 두 번째 암호 블록을 조작해야 한다.<br>
+위와 같은 구조를 만들기 위해서 id 값을 늘려줘야 하는데, 첫 번째 블록에 들어갈 7 bytes 와 두 번재 블록에 들어갈 16 bytes 를 더해서 최소 <span style="color:#cf3030">23 bytes</span> 길이의 id 값을 입력해야 한다 :P <br><br>
 
 ```python
 id = 'a'*23
