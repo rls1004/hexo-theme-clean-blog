@@ -238,7 +238,7 @@ n_ct = ct[:23]+solve+ct[23+len(solve):]
 uid=3(rootlar) gid=3(rootlar) groups=3(rootlar)
 ```
 regualr 를 root 로 바꾸는 방법은 간단하다. `XOR 연산의 원리`를 이용하면 되는데, 원래의 평문 값을 XOR 해주면 0이 되므로 여기에 원하는 값을 다시 XOR 해주면 된다.<br>
-결과 값으로 (rootlar) 이 나왔다. 위에 있는 lar 은 필요 없는 값인데 공백으로 바꿔주면 (root\ \ \ ) 가 된다. (root) 랑은 다른 값이다.<br>
+결과 값으로 (rootlar) 이 나왔다. 위에 있는 lar 은 필요 없는 값인데 공백으로 바꿔주면 (root \  ) 가 된다. (root) 랑은 다른 값이다.<br>
 여기에서는 사전에 미리 알아냈던 <span style="color:#cf3030">구분자(&)</span>를 이용하여 뒤쪽의 값을 무시할 수 있다.
 ```python
 from pwn import *
