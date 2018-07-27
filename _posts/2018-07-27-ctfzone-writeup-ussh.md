@@ -22,7 +22,7 @@ asdfasdf@crypto: $ help
 Avaliable commands: ls, cat, id, session, help, exit
 ```
 서비스에 접속하면 id 를 입력할 수 있고, Group 은 자동적으로 regular 로 설정된다. 그 후 쉘이 뜨는데 사용 가능한 명령어가 몇 개 있다.
-```
+```sh
 asdfasdf@crypto: $ ls
 flag.txt  info.txt  backup.sh
 
@@ -31,7 +31,7 @@ cat: flag.txt: Permission denied.
 Expect group=root
 ```
 우선 ls 명령어를 통해 flag.txt 파일이 있다는 것을 볼 수 있는데, cat 명령어로 읽으려고 하면 root 의 group 을 요구한다.
-```
+```sh
 asdfasdf@crypto: $ id
 uid=3(regular) gid=3(regular) groups=3(regular)
 
@@ -46,7 +46,7 @@ LRbbKN4KlLihxu2D3f12fg==:iK5+5EnwtDlMveNF1RIKWBxoR+mwLrAm+qesFm3gDtU=
 ```
 id 명령로 현재의 권한을 확인해보면 regular 로 설정되어 있는 것을 확인할 수 있다. session 명령어로는 현재의 세션을 가져오거나 새로 설정할 수 있는데 --get 옵션으로 세션을 가져와보면 base64 로 인코딩되어 있고 이를 복호화하면 알 수 없는 바이너리 값들이 나온다.<br>
 특징을 살펴보면 `:` 을 기준으로 왼쪽은 항상 16 바이트 길이이고 오른쪽은 32 부터 시작해서 id 값이 길어질 때마다 16 의 배수 길이로 증가한다.
-```
+```sh
 asdfasdf@crypto: $ session --set LRbbKN4KlLihxu2D3f12fg==:iK5+5EnwtDlMveNF1RIKWBxoR+mwLrAm+qesFm3gDta=
 Error: PKCS7 padding is incorrect
 ```
@@ -144,7 +144,7 @@ for i in range(0x100):
 ```python
 n_iv = iv[:13]+chr(ord('&')^ord('a')^ord(iv[13]))+iv[13+1:]
 ```
-```
+```sh
 aaaa@crypto: $
 session: Invalid session
 ```
@@ -161,7 +161,7 @@ for i in range(len(ct)):
         r.sendline('id')
         print "[%03d]"%i+r.recvuntil('\n')
 ```
-```
+```sh
 session: Invalid session
 aaaa@crypto: $
 [014] uid=3(regular) gid=3(regular) groups=3(regular)
@@ -196,7 +196,7 @@ for i in range(16,16+16): # second block range
         r.sendline('id')
         print "[%03d]"%i+r.recvuntil('\n')
 ```
-```
+```sh
 aaaaaaa!|\x00Ñâh~\x14ÃøÂ\x18ÚO\x1b@crypto: $
 [023] uid=3(¤egular) gid=3(¤egular) groups=3(¤egular)
 
