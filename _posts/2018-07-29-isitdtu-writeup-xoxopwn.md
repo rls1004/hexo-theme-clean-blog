@@ -132,13 +132,10 @@ This is function x()>>> o.func_code.co_consts
 The `co_consts` returns a tuple containing the literals used by the bytecode.<br>
 Among these, `392a3d3c2b3a22125d58595733031c0c070a043a071a37081d300b1d1f0b09` and `pythonwillhelpyouopenthedoor` seem to be suspicious.<br><br>
 
-`(1)` and `(3)` in the bytecode mean `392a3d3c2b3a22125d58595733031c0c070a043a071a37081d300b1d1f0b09` and `pythonwillhelpyouopenthedoor`.<br>
+`(1)` and `(3)` in the bytecode mean `392a3d3c2b3a22125d58595733031c0c070a043a071a37081d300b1d1f0b09` and `pythonwillhelpyouopenthedoor`. (index 1, index 3)<br>
 According to the bytecode, this value must be equal after the `XOR` operation.<br>
 
-
-
-<br><br><br>
-
+---
 ### Solve
 Xor the two values.<br>
 Rotate if the length is short.
