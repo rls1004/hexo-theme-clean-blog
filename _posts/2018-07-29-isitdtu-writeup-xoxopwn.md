@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[CTFZone 2018] USSH 3.0 Write-up"
+title: "[ISITDTU 2018] xoxopwn Write-up"
 image: /img/isitdtu_2018.png
 tags: [CTF, write-up, pwnable]
 ---
