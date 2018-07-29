@@ -6,7 +6,7 @@ tags: [CTF, write-up, crypto]
 ---
 
 ## Keyword
-`crypto` `AES`
+`crypto` `AES` `bit flipping`
 
 ---
 ### Analysis
