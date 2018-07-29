@@ -39,7 +39,7 @@ if dec.startswith("Give me the flag"):
 		self.request.sendall("This is flag: %s\n" %__FLAG__)
 ```
 소스 코드 상에서 살펴보면 requset 를 decode 했을 때 "Give me the flag" 로 시작하는 문자열이라면 flag 를 출력해준다.<br>
-"Give me the flag"의 encode 값을 알아내야 하는데 첫 번째 입력값이 "Give me the flag"로 시작하면 encode 를 수행하지 않고 종료한다.<br>
+"Give me the flag"의 encode 값을 알아내야 하는데 "Give me the flag"로 시작하는 문자열을 입력하면 encode 를 수행하지 않고 종료한다.<br>
 <br>
 ```python
 def encrypt(self, plain_text, iv):
