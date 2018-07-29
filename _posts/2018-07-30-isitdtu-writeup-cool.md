@@ -39,12 +39,13 @@ Compares 12 bytes to each hash value, and then compares 1 byte to 33. it is '!'.
 It is not finished yet.<br>
 <br>
 
-<center><img src="/img/isitdtu_cool_5.JPG" class="effect"></center>
+<center><img src="/img/isitdtu_cool_6.JPG" class="effect"></center>
 
 Last 15 bytes.<br>
 From the 14th character, the result of `xor` from the first character to the nth character must be the same as the specific value(byte_6020A8).<br>
 
-<center><img src="/img/isitdtu_cool_6.JPG" class="effect"></center>
+<center><img src="/img/isitdtu_cool_7.JPG" class="effect"></center>
+
 
 ---
 ### Solve
