@@ -65,7 +65,7 @@ maps 파일을 그냥 읽었을 때는 17줄이어서 4번에 걸렸는데 `Add 
 
 <center><img src="/img/cce_note_5.JPG" class="effect"></center>
 
-(unsigned int)(size-1) 만큼의 데이터를 입력할 수 있으니 0xffffffff의 데이터를 입력할 수 있다.<br>
+<span style="color:#cf3030">(unsigned int)(size-1)</span> 만큼의 데이터를 입력할 수 있으니 0xffffffff의 데이터를 입력할 수 있다.<br>
 여기서 0x18 만큼의 데이터를 쓰고 `View Note`로 출력해보면 0x18개의 데이터 뒤에 top chunk가 함께 출력된다.
 
 <center><img src="/img/cce_note_6.JPG" class="effect"></center>
