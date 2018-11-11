@@ -11,7 +11,6 @@ tags: [CTF, write-up, pwn, pwnable, heap]
 ---
 ### Analysis
 
-<br>
 
 <center><img src="/img/cce_note_1.JPG" class="effect"></center>
 
@@ -31,11 +30,9 @@ Note 관련 기능들에서는 size 를 입력하면 size 만큼의 힙을 할�
 
 <br>
 
-첫 번째 취약점을 이용하면 쉽게 풀리지만 leak을 어떻게 해야되나 고민하다가 첫 번째 취약점을 잊어버리고 두 번째 취약점으로 풀었다 ㅇ-ㅇ;;<br><br>
+첫 번째 취약점을 이용하면 쉽게 풀리지만 leak을 어떻게 해야되나 고민하다가 첫 번째 취약점을 잊어버리고 두 번째 취약점으로 풀었다 ㅇ-ㅇ;;<br><br><br>
 
 ### Leak
-
-<br>
 
 `Execute` 메뉴를 이용해서 /proc/self/maps 를 읽으면 라이브러리가 로드된 주소를 알 수 있다.<br>
 `Execute` 메뉴에서 필터링하는 조건은 다음과 같다.<br>
@@ -73,6 +70,8 @@ unsorted bin attack을 사용해서 \_IO_list_all을 overwrite 하고 vtable을 
 <br><br>
 
 ### Solve
+
+<br>
 
 ```python
 from pwn import *
@@ -191,7 +190,7 @@ r.send(payload)
 
 r.interactive()
 ```
-```sh
+```shell
 note@ip-172-31-20-113:~$ vi /tmp/ex_rls3.py
 note@ip-172-31-20-113:~$ python /tmp/ex_rls3.py
 [+] Starting local process '/home/note/note': pid 5511
