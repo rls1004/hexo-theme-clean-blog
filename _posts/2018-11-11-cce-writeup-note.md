@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "[CCE 2018] note Write-up"
-image: /img/cce_2018.png
+image: /img/cce_2018.JPG
 tags: [CTF, write-up, pwn, pwnable, heap]
 ---
 
 ## Keyword
-`pwnable` `heap` `house of orange`
+`pwnable` `heap` `house of orange` `unsorted bin`
 
 ---
 ### Analysis
