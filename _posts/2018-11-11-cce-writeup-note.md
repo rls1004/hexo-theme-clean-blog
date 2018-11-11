@@ -52,7 +52,7 @@ Note 관련 기능들에서는 size 를 입력하면 size 만큼의 힙을 할�
 maps 파일을 그냥 읽었을 때는 17줄이어서 4번에 걸렸는데 `Add Note`를 이용해서 다양한 크기의 힙을 할당해주면 힙 페이지가 생성되면서 maps가 19줄까지 증가하게 된다.<br>
 <br>
 여기서 1번 취약점을 사용해서 슥삭 공격하면 되는데 leak 하고 나니까 `Execute`는 이제 필요 없다고 생각하고 1번 취약점을 머리에서 지워버렸다.
-<br><br>
+<br><br><br>
 
 
 ### Exploit
@@ -74,11 +74,9 @@ top chunk 를 알아냈으면 여기에 % 0x1000 연산을 한 값을 heap overf
 그 후, top chunk 보다 큰 크기의 힙을 할당하려고 하면 sysmalloc이 호출되면서 top chunk 를 확장하게 된다.<br>
 새로운 top chunk를 할당하면 이전의 top chunk는 free 되어 unsorted bin에 들어간다.<br>
 unsorted bin attack을 사용해서 \_IO_list_all을 overwrite 하고 vtable을 조작해서 실행 흐름을 바꿀 수 있다.
-<br><br>
+<br><br><br>
 
 ### Solve
-
-<br>
 
 ```python
 from pwn import *
