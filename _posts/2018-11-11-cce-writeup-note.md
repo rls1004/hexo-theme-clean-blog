@@ -18,21 +18,15 @@ tags: [CTF, write-up, pwn, pwnable, heap]
 `Add` / `Delete` / `View Note` 와 `Execute` 기능이 있다.<br>
 Note 관련 기능들에서는 size 를 입력하면 size 만큼의 힙을 할당하고 데이터를 쓰고, 보고, free 할 수 있다.<br>
 `Execute` 기능은 파일명을 입력하면 파일명에 대한 약간의 필터를 거치고, 해당 파일의 내용을 read로 읽는다. 읽은 데이터에 개행이 18번보다 많이 들어가 있어야만 출력해준다.
-<br><br>
+<br><br><br>
 
 ### Vulnerability
-
-<br>
 
 발견한 취약점은 두 개.<br>
 
 1. **stack overflow** : `Execute` 메뉴에서 파일의 내용을 읽을 때, <span style="color:#cf3030">[rbp-0xBE0]</span>에 최대 <span style="color:#cf3030">0xC00</span> 만큼의 데이터를 읽는다.
-
-<center><img src="/img/cce_note_2.JPG" class="effect"></center>
-<center><img src="/img/cce_note_3.JPG" class="effect"></center>
-
+<center><img src="/img/cce_note_2.JPG" class="effect"> <img src="/img/cce_note_3.JPG" class="effect"></center>
 2. **heap overflow** : `Add Note` 메뉴에서 size 만큼 malloc 하고 <span style="color:#cf3030">(unsigned int)(size-1)</span> 만큼 데이터를 읽는다.
-
 <center><img src="/img/cce_note_4.JPG" class="effect"></center>
 
 <br>
