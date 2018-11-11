@@ -11,6 +11,7 @@ tags: [CTF, write-up, pwn, pwnable, heap]
 ---
 ### Analysis
 
+<br>
 
 <center><img src="/img/cce_note_1.JPG" class="effect"></center>
 
@@ -50,22 +51,22 @@ maps 파일을 그냥 읽었을 때는 17줄이어서 4번에 걸렸는데 `Add 
 
 
 ### Exploit
-<br>
 
-`Execute`를 이용해서 lib base, io_list_all, system, heap 영역 주소를 알 수 있다.<br>
+`Execute`를 이용해서 lib base, io_list_all, system, heap 영역 주소를 알 수 있다. 실행 흐름만 바꾸면 된다.<br>
+힙에 대해서는 malloc만 하고 free하는 부분이 없어서 house of orange를 사용하여 공격했다.<br>
 <br>
 
 `Add Note`에서 크기가 0인 힙을 할당하면 최소 크기인 0x18 크기의 힙이 할당된다.
 
 <center><img src="/img/cce_note_5.JPG" class="effect"></center>
 
-size-1 만큼의 데이터를 입력할 수 있으니 0xffffffff의 데이터를 입력할 수 있다.<br>
+(unsigned int)(size-1) 만큼의 데이터를 입력할 수 있으니 0xffffffff의 데이터를 입력할 수 있다.<br>
 여기서 0x18 만큼의 데이터를 쓰고 `View Note`로 출력해보면 0x18개의 데이터 뒤에 top chunk가 함께 출력된다.
 
 <center><img src="/img/cce_note_6.JPG" class="effect"></center>
 
 top chunk 를 알아냈으면 여기에 % 0x1000 연산을 한 값을 heap overflow를 이용해서 top chunk에 overwrite 한다.<br>
-그 후, top chunk 보다 큰 크기의 힙을 할당하려고 하면 sysmalloc을 호출해서 top chunk 를 확장하게 된다.<br>
+그 후, top chunk 보다 큰 크기의 힙을 할당하려고 하면 sysmalloc이 호출되면서 top chunk 를 확장하게 된다.<br>
 새로운 top chunk를 할당하면 이전의 top chunk는 free 되어 unsorted bin에 들어간다.<br>
 unsorted bin attack을 사용해서 \_IO_list_all을 overwrite 하고 vtable을 조작해서 실행 흐름을 바꿀 수 있다.
 <br><br>
