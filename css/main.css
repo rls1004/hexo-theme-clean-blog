@@ -20,8 +20,9 @@ layout: null
 }
 
 body {
+  font-weight: 300;
   font-family: 'Noto Sans','AppleSDGothicNeoR00','맑은 고딕','Malgun Gothic','돋움',dotum,sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   color: #404040;
   position: relative;
   background-color: {{ site.page-col }};
@@ -31,7 +32,7 @@ body {
   {% endif %}
 }
 p {
-  line-height: 1.5em;
+  line-height: 23px;
   margin: 30px 0;
 }
 h1,h2,h3,h4,h5,h6 {
